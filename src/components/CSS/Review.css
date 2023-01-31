@@ -1,0 +1,63 @@
+.navbar {
+  padding: 20px;
+  box-shadow: 0 -2px 8px 1px rgba(0, 0, 0, 0.4);
+}
+.navbar-nav {
+  display: flex;
+  justify-content: space-evenly;
+}
+.navbar-nav a {
+  padding: 5px;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin: 5px;
+}
+.center,
+.right {
+  display: flex;
+}
+/* Reviews */
+.card {
+  width: 50vw;
+  margin: auto;
+  margin-bottom: 5px;
+}
+.card-title {
+  margin-bottom: 20px;
+  font-size: x-large;
+  font-weight: 800;
+  text-align: center;
+}
+.reviews-top {
+  box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.4);
+  padding: 20px;
+}
+.user-details {
+  align-items: center;
+  display: flex;
+}
+
+.avatar {
+  border-radius: 90px;
+  width: 60px;
+  height: 60px;
+  margin: 2px;
+}
+h6 {
+  font-size: larger;
+  font-weight: 700;
+  margin-right: 10px;
+}
+.reviews-form {
+  padding: 5px;
+  width: 50vw;
+  border-radius: 20px;
+}
+
+.form-container {
+  padding: 20px;
+  background: #eedfdf;
+  width: 60%;
+  border-radius: 20px;
+  margin: auto;
+}

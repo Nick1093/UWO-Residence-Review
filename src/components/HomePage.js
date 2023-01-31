@@ -2,6 +2,7 @@ import React from "react";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import { Link } from "react-router-dom";
+import "./CSS/HomePage.css";
 
 function HomePage() {
   const residences = [
@@ -41,7 +42,7 @@ function HomePage() {
       <Grid container>
         {residences.map((building) => (
           <>
-            <Grid item xs={4} className="Grid-item">
+            <Grid item xs={4} className="Grid-item" key={building.name}>
               <Paper elevation={24}>
                 <img src={building.image} alt={building.name}></img>
                 <Link to={`/reviews-page/${building.name}`}>
