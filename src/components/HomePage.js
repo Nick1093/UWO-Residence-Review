@@ -41,16 +41,12 @@ function HomePage() {
       <h1 className="title">Residences</h1>
       <Grid container>
         {residences.map((building) => (
-          <>
-            <Grid item xs={4} className="Grid-item" key={building.name}>
-              <Paper elevation={24}>
-                <img src={building.image} alt={building.name}></img>
-                <Link to={`/reviews-page/${building.name}`}>
-                  {building.name}
-                </Link>
-              </Paper>
-            </Grid>
-          </>
+          <Grid item xs={4} className="Grid-item" key={building.name}>
+            <Paper elevation={24}>
+              <img src={building.image} alt={building.name}></img>
+              <Link to={`/reviews-page/${building.name}`}>{building.name}</Link>
+            </Paper>
+          </Grid>
         ))}
       </Grid>
     </>

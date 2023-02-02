@@ -1,45 +1,33 @@
+import { SelectUnstyledContext } from "@mui/base";
 import React, { useState, useEffect } from "react";
 import Review from "./Review";
 
-function ListReviews({ building }) {
-  const [reviews, setReviews] = useState([]);
-
-  const getReviews = async () => {
-    try {
-      const response = await fetch(
-        `http://localhost:5000/reviews?building=${building}`
-      );
-
-      if (response.ok) {
-        const jsonData = await response.json();
-        setReviews(jsonData);
-      } else {
-        console.log(`Server returned status code ${response.status}`);
-      }
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
-
-  useEffect(() => {
-    getReviews();
-  }, [reviews]);
-
+function ListReviews({ reviews, changeSuccess }) {
   return (
     <>
       {reviews.map((review) => (
-        <>
-          <Review
-            key={review["review_id"]}
-            title={review["title"]}
-            content={review["content"]}
-            created_on={review["created_on"]}
-            rating={review["rating"]}
-          />
-        </>
+        <Review
+          key={review["review_id"]}
+          review={review}
+          changeSuccess={changeSuccess}
+        />
       ))}
     </>
   );
 }
 
 export default ListReviews;
+
+// const onEditSuccess = () => {
+//   console.log("edit is being called");
+//   getReviews();
+// };
+
+// const onDeleteSuccess = () => {
+//   console.log("delete is being called");
+//   getReviews();
+// };
+
+// useEffect(() => {
+//   getReviews();
+// }, [reviews]);
