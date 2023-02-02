@@ -2,10 +2,11 @@ CREATE DATABASE Review-Residences;
 
 CREATE TABLE reviews (
     review_id SERIAL PRIMARY KEY,
+    building TEXT,
     rating INTEGER,
     title TEXT,
-    body VARCHAR(255),
-    created_on TIMESTAMP NOT NULL
+    content TEXT,
+    created_on TIMESTAMP
 );
 
 
@@ -14,4 +15,4 @@ CREATE TABLE accounts (
     username VARCHAR ( 50 ) UNIQUE NOT NULL,
 	password VARCHAR ( 50 ) NOT NULL,
     created_on TIMESTAMP NOT NULL
-)
+);

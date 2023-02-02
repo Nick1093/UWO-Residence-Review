@@ -2,7 +2,6 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const pool = require("./db");
-const { parseComplete } = require("pg-protocol/dist/messages");
 const port = 5000;
 
 // middleware
@@ -15,10 +14,10 @@ app.use(express.json());
 app.post("/reviews", async (req, res) => {
   try {
     console.log(req.body);
-    const { description } = req.body;
+    const { building, rating, content, date } = req.body;
     const newReview = await pool.query(
-      "INSERT INTO reviews (description) VALUES($1) RETURNING *",
-      [description]
+      "INSERT INTO reviews (building, rating, content, created_on) VALUES($1, $2, $3, $4) RETURNING *",
+      [building, rating, content, date]
     );
 
     res.json(newReview.rows[0]);
@@ -30,7 +29,10 @@ app.post("/reviews", async (req, res) => {
 // get all reviews
 app.get("/reviews", async (req, res) => {
   try {
-    const allReviews = await pool.query("SELECT * FROM reviews");
+    const building = req.query.building;
+    const allReviews = await pool.query(
+      `SELECT * FROM reviews WHERE building = '${building}' ORDER BY review_id DESC`
+    );
     res.json(allReviews.rows);
   } catch (error) {
     console.log(error.message);
@@ -57,10 +59,10 @@ app.get("/reviews/:id", async (req, res) => {
 app.put("/reviews/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const { description } = req.body;
+    const { content, newRating } = req.body;
     const review = await pool.query(
-      "UPDATE reviews SET description = $1 WHERE review_id = $2",
-      [description, id]
+      "UPDATE reviews SET content = $1, rating = $2 WHERE review_id = $3",
+      [content, newRating, id]
     );
 
     res.json("Review was Updated!");
